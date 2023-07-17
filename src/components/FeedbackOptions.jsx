@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
+import css from './Feedback.module.css';
 const FeedbackOptions = ({ state, handleClickBtn }) => {
   return (
-    <div>
+    <div className={css.containerBtn}>
       {state.map(name => (
-        <button key={name} onClick={() => handleClickBtn(name)}>
+        <button
+          className={css.btn}
+          key={name}
+          onClick={() => handleClickBtn(name)}
+        >
           {name}
         </button>
       ))}

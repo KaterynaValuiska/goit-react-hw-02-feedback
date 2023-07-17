@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import css from './Feedback.module.css';
+import { BsCupHot, BsArrowThroughHeart } from 'react-icons/bs';
 const Statistics = ({
   state,
   countTotalFeedback,
@@ -7,22 +9,30 @@ const Statistics = ({
   return (
     <div>
       <h2> Statistics</h2>
-      <p>
-        Good: <span>{state.good}</span>
-      </p>
-      <p>
-        Neutral: <span>{state.neutral}</span>
-      </p>
-      <p>
-        Bad: <span>{state.bad}</span>
-      </p>
-      <p>
-        Total: <span>{countTotalFeedback()}</span>
-      </p>
-      <p>
-        Positive feedback:
-        <span> {countPositiveFeedbackPercentage()} %</span>
-      </p>
+      <div className={css.containerStatistics}>
+        <p className={css.statisticsGood}>
+          Good <span>{state.good}</span>
+        </p>
+        <p className={css.statisticsNeutral}>
+          Neutral <span>{state.neutral}</span>
+        </p>
+        <p className={css.statisticsBad}>
+          Bad <span>{state.bad}</span>
+        </p>
+      </div>
+      <div className={css.total}>
+        <p className={css.statisticsTotal}>
+          Total: <span>{countTotalFeedback()}</span>
+        </p>
+        <BsCupHot />
+      </div>
+      <div className={css.total}>
+        <p className={css.statisticsTotal}>
+          Positive feedback:
+          <span> {countPositiveFeedbackPercentage()} %</span>
+        </p>
+        <BsArrowThroughHeart />
+      </div>
     </div>
   );
 };

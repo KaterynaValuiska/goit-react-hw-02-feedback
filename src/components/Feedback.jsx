@@ -3,6 +3,7 @@ import Section from './Section';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Notification from './Notification';
+import css from './Feedback.module.css';
 
 class Feedback extends Component {
   state = {
@@ -39,26 +40,24 @@ class Feedback extends Component {
   };
   render() {
     return (
-      <div>
-        <div>
-          <Section title="Pleasa leave feedback">
-            <FeedbackOptions
-              state={Object.keys(this.state)}
-              handleClickBtn={this.ClickBtn}
+      <div className={css.container}>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            state={Object.keys(this.state)}
+            handleClickBtn={this.ClickBtn}
+          />
+          {this.countTotalFeedback() !== 0 ? (
+            <Statistics
+              state={this.state}
+              countTotalFeedback={this.countTotalFeedback}
+              countPositiveFeedbackPercentage={
+                this.countPositiveFeedbackPercentage
+              }
             />
-            {this.countTotalFeedback() !== 0 ? (
-              <Statistics
-                state={this.state}
-                countTotalFeedback={this.countTotalFeedback}
-                countPositiveFeedbackPercentage={
-                  this.countPositiveFeedbackPercentage
-                }
-              />
-            ) : (
-              <Notification message="There is no feedback"></Notification>
-            )}
-          </Section>
-        </div>
+          ) : (
+            <Notification message="There is no feedback"></Notification>
+          )}
+        </Section>
       </div>
     );
   }
